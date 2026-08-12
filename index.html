@@ -5,13 +5,246 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Գրքերի Աշխարհ - Book Armenia</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f4f4f9; color: #333; }
-        h1 { color: #2c3e50; }
-        p { font-size: 18px; }
+        /* Ընդհանուր ոճեր */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f1e6; /* Բաց կրեմագույն ֆոն */
+            font-family: 'Georgia', serif; /* Տառատեսակը մոտ է նկարի ոճին */
+            color: #4a4a4a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Վերին մենյու */
+        .header {
+            margin-top: 40px;
+            display: flex;
+            gap: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .header a {
+            text-decoration: none;
+            color: #4a4a4a;
+            transition: color 0.3s;
+        }
+        .header a:hover {
+            color: #000;
+        }
+
+        /* Հիմնական տեքստ */
+        .main-title {
+            margin-top: 80px;
+            font-size: 4rem;
+            font-weight: 700;
+            color: #3a3a3a;
+            text-align: center;
+        }
+        .sub-title {
+            margin-top: 15px;
+            font-size: 1.3rem;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        /* Գրքակալների բլոկ */
+        .bookshelf-container {
+            margin-top: 80px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Տարածություն դարակների միջև */
+        }
+
+        .shelf {
+            width: 700px;
+            height: 15px;
+            background-color: #b08f6f; /* Դարակի գույնը */
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Ստվեր դարակի տակ */
+        }
+
+        /* Գրքերի ոճեր */
+        .books-row {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            position: absolute;
+            bottom: 15px; /* Գրքերը դարակների վրա */
+            left: 10px;
+            right: 10px;
+        }
+
+        .book {
+            width: 12px; /* Հաստություն */
+            border-radius: 2px;
+            margin: 0 1px; /* Փոքր տարածություն գրքերի միջև */
+            box-shadow: 2px 0 5px rgba(0,0,0,0.15); /* Գրքի ստվեր */
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .book:hover {
+            transform: translateY(-5px); /* Գրքերը փոքր-ինչ բարձրանում են մկնիկի վրա */
+        }
+
+        /* Գրքերի բարձրություններ և գույներ */
+        .h-1 { height: 90px; background-color: #d97a5f; } /* Օքրա */
+        .h-2 { height: 85px; background-color: #c59164; } /* Դարչնագույն */
+        .h-3 { height: 95px; background-color: #e0ab7a; } /* Բաց նարնջագույն */
+        .h-4 { height: 100px; background-color: #648c99; } /* Կապույտ */
+        .h-5 { height: 88px; background-color: #bda370; } /* Դեղին-կանաչ */
+        .h-6 { height: 92px; background-color: #709987; } /* Կանաչ */
+        .h-7 { height: 85px; background-color: #e6be6e; } /* Ոսկեգույն */
+
+        /* Պիտակների (tooltip) ոճեր */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: auto;
+            background-color: #fff;
+            color: #4a4a4a;
+            text-align: center;
+            padding: 8px 12px;
+            border-radius: 4px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Պիտակը գրքի վերևում */
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Arial', sans-serif;
+            font-size: 0.85rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            white-space: nowrap;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+
+        /* Ստվեր պատի վրա */
+        .shadow {
+            position: absolute;
+            top: -200px;
+            left: -50px;
+            width: 300px;
+            height: 500px;
+            background-color: rgba(0,0,0,0.03);
+            transform: skewX(30deg);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Ներքևի հատված */
+        .footer {
+            margin-top: auto;
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .copyright {
+            font-size: 0.9rem;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+        .social-icons img:hover {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
-    <h1>Բարի գալուստ Book Armenia</h1>
-    <p>Այստեղ դուք կգտնեք տեղեկություններ ձեր սիրելի գրքերի մասին։</p>
+
+    <!-- Վերին մենյու -->
+    <div class="header">
+        <a href="#">Մեր մասին</a>
+        <a href="#">Գրքեր</a>
+        <a href="#">Կապ</a>
+    </div>
+
+    <!-- Հիմնական վերնագրեր (այստեղ է փոփոխությունը) -->
+    <div class="main-title">Book Armenia</div>
+    <div class="sub-title">Բարի գալուստ գրքերի աշխարհ</div>
+
+    <!-- Գրքակալ -->
+    <div class="bookshelf-container">
+        <div class="shadow"></div>
+        
+        <!-- Վերին դարակ -->
+        <div class="shelf"></div>
+        <div class="books-row">
+            <!-- Գրքեր պիտակներով -->
+            <div class="tooltip"><span class="tooltiptext">Հայկական Պատմություն</span><div class="book h-1"></div></div>
+            <div class="tooltip"><span class="tooltiptext">Վեպ</span><div class="book h-2"></div></div>
+            <div class="book h-3"></div>
+            <div class="tooltip"><span class="tooltiptext">Տեխնոլոգիաներ</span><div class="book h-4"></div></div>
+            <div class="book h-1"></div>
+            <div class="book h-5"></div>
+            <div class="book h-2"></div>
+            <div class="tooltip"><span class="tooltiptext">Մանկական Գրքեր</span><div class="book h-6"></div></div>
+            <div class="book h-3"></div>
+            <div class="book h-5"></div>
+            <div class="book h-4"></div>
+            <div class="book h-1"></div>
+            <div class="book h-5"></div>
+            <div class="book h-2"></div>
+            <div class="book h-3"></div>
+            <div class="book h-6"></div>
+            <div class="book h-1"></div>
+            <div class="book h-4"></div>
+            <div class="book h-5"></div>
+            <div class="book h-2"></div>
+        </div>
+
+        <!-- Ստորին դարակ -->
+        <div class="shelf"></div>
+        <div class="books-row">
+            <!-- Գրքեր պիտակներով -->
+            <div class="tooltip"><span class="tooltiptext">Դասական</span><div class="book h-1"></div></div>
+            <div class="book h-2"></div>
+            <div class="book h-3"></div>
+            <!-- Հորիզոնական գիրք -->
+            <div style="width: 50px; height: 12px; background-color: #648c99; border-radius: 2px; margin: 0 1px; box-shadow: 2px 0 5px rgba(0,0,0,0.15); transform: translateY(-2px); cursor: pointer;" class="tooltip">
+                <span class="tooltiptext">Ալբոմ</span>
+            </div>
+            <div class="book h-3"></div>
+            <div class="book h-5"></div>
+            <div class="book h-4"></div>
+            <div class="book h-1"></div>
+            <div class="book h-5"></div>
+            <div class="book h-2"></div>
+            <div class="book h-3"></div>
+            <div class="book h-6"></div>
+            <div class="book h-1"></div>
+            <div class="tooltip"><span class="tooltiptext">Լուսանկարչություն</span><div class="book h-4"></div></div>
+            <div class="book h-5"></div>
+            <div class="book h-2"></div>
+        </div>
+    </div>
+
+    <!-- Ներքևի հատված -->
+    <div class="footer">
+        <div class="social-icons">
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png" alt="Facebook"></a>
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384017.png" alt="Twitter"></a>
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384021.png" alt="Instagram"></a>
+        </div>
+        <div class="copyright">© 2024 Book Armenia</div>
+    </div>
+
 </body>
 </html>
