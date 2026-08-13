@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Նոր գրքեր - Book Armenia</title>
+    <style>
+        body {
+            margin: 0; padding: 20px;
+            background: linear-gradient(135deg, #fdfcf6 0%, #e8e4d1 100%);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #333; display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; line-height: 1.8;
+        }
+
+        .geek-img {
+            width: 100%; max-width: 450px; height: auto;
+            margin-bottom: 30px; margin-top: 20px;
+            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.15));
+        }
+
+        .article {
+            background-color: #fff; padding: 40px;
+            border-radius: 16px; border: 2px solid #dcd8c5;
+            max-width: 650px; margin: auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        h1 {
+            color: #2a9d8f; font-size: 2.8rem;
+            margin-top: 0; margin-bottom: 20px; font-weight: 800;
+            text-shadow: 1px 1px #fff, 2px 2px #999;
+        }
+
+        p { font-size: 1.3rem; margin-bottom: 20px; }
+
+        .new-item {
+            background-color: #e9f5f2; padding: 15px 20px;
+            border-left: 5px solid #2a9d8f; margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .footer-link {
+            margin-top: 40px; font-size: 1.1rem; font-weight: 600;
+            color: #666; text-decoration: none; padding: 10px;
+        }
+        .footer-link:hover { color: #333; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <!-- Գիքային գրադարակի պատկեր -->
+    <svg class="geek-img" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="600" height="200" fill="none"/>
+        <rect x="50" y="140" width="500" height="15" fill="#2a9d8f" rx="5"/>
+        <rect x="100" y="70" width="400" height="15" fill="#2a9d8f" rx="5"/>
+        <rect x="70" y="80" width="30" height="60" fill="#e76f51" rx="3"/>
+        <rect x="110" y="90" width="25" height="50" fill="#264653" rx="3"/>
+        <rect x="145" y="70" width="35" height="70" fill="#f4a261" rx="3"/>
+        <circle cx="280" cy="110" r="25" fill="#2a9d8f"/>
+        <rect x="270" y="120" width="20" height="15" fill="#fff" rx="2"/>
+        <circle cx="270" cy="100" r="5" fill="#e9c46a"/>
+        <circle cx="290" cy="100" r="5" fill="#e9c46a"/>
+        <rect x="320" y="60" width="30" height="80" fill="#2a9d8f" rx="3"/>
+        <rect x="360" y="75" width="25" height="65" fill="#e76f51" rx="3"/>
+        <polygon points="460,60 445,90 475,90" fill="#264653"/>
+        <rect x="445" y="90" width="30" height="50" fill="#264653" rx="3"/>
+    </svg>
+
+    <div class="article">
+        <h1>🆕 Նոր գրքեր</h1>
+        <p>Գրական աշխարհը երբեք չի դադարում զարմացնել։ Ահա այն նորույթները, որոնք արժե ավելացնել ձեր ընթերցանության ցանկում.</p>
+        
+        <div class="new-item">
+            <strong>«Գաղտնիքների այգին»</strong><br>
+            Ժամանակակից արկածային վեպ, որը ձեզ կտեղափոխի անսպասելի հայտնագործությունների աշխարհ։
+        </div>
+
+        <div class="new-item">
+            <strong>«Լռության ձայնը»</strong><br>
+            Խորը հոգեբանական պատմություն մարդկային զգացմունքների և ընտրությունների մասին։
+        </div>
+    </div>
+    
+    <a href="index.html" class="footer-link">← Վերադառնալ գլխավոր էջ</a>
+</body>
+</html>
