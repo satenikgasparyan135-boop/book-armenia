@@ -13,43 +13,57 @@
             min-height: 100vh; line-height: 1.8;
         }
 
+        .geek-img {
+            width: 100%; max-width: 450px; height: auto;
+            margin-bottom: 30px; margin-top: 20px;
+            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.15));
+        }
+
         .article {
             background-color: #fff; padding: 40px;
             border-radius: 16px; border: 2px solid #dcd8c5;
-            max-width: 650px; margin-top: 40px;
+            max-width: 650px; margin: auto;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: left;
         }
 
         h1 {
-            color: #2a9d8f; font-size: 2.5rem;
+            color: #2a9d8f; font-size: 2.8rem;
             margin-top: 0; margin-bottom: 20px; font-weight: 800;
+            text-shadow: 1px 1px #fff, 2px 2px #999;
         }
 
-        p { font-size: 1.3rem; }
-
         .news-box {
-            background-color: #f0f7f6; padding: 25px;
+            background-color: #f0f7f6; padding: 20px;
             border-left: 5px solid #2a9d8f;
             border-radius: 0 8px 8px 0;
-            margin-top: 20px;
+            margin-top: 20px; font-size: 1.2rem;
         }
 
         .footer-link {
             margin-top: 40px; font-size: 1.1rem; font-weight: 600;
-            color: #666; text-decoration: none;
+            color: #666; text-decoration: none; padding: 10px;
         }
         .footer-link:hover { color: #333; text-decoration: underline; }
     </style>
 </head>
 <body>
+    <svg class="geek-img" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="600" height="200" fill="none"/>
+        <rect x="50" y="140" width="500" height="15" fill="#2a9d8f" rx="5"/>
+        <rect x="100" y="70" width="400" height="15" fill="#2a9d8f" rx="5"/>
+        <rect x="70" y="80" width="30" height="60" fill="#e76f51" rx="3"/>
+        <rect x="110" y="90" width="25" height="50" fill="#264653" rx="3"/>
+        <circle cx="280" cy="110" r="25" fill="#2a9d8f"/>
+        <rect x="270" y="120" width="20" height="15" fill="#fff" rx="2"/>
+        <rect x="320" y="60" width="30" height="80" fill="#2a9d8f" rx="3"/>
+    </svg>
 
     <div class="article">
         <h1>🆕 Գրական նորություններ</h1>
-        
         <div class="news-box">
-            <strong>Բարաք Օբամայի նոր գրքային փոդքաստը</strong><br>
-   08.13.26         ԱՄՆ նախկին նախագահ Բարաք Օբաման հայտարարել է Audible հարթակում նոր գրքային փոդքաստի մեկնարկի մասին։ Այն կթողարկվի սեպտեմբերի 24-ին և նվիրված կլինի այն գրքերին, որոնք մեծ ազդեցություն են թողել իր և հասարակության վրա։
+            <strong>Բարաք Օբամայի նոր գրքային փոդքաստը</strong><br><br>
+            ԱՄՆ նախկին նախագահ Բարաք Օբաման հայտարարել է Audible հարթակում նոր գրքային փոդքաստի մեկնարկի մասին։ Այն կթողարկվի սեպտեմբերի 24-ին և նվիրված կլինի այն գրքերին, որոնք մեծ ազդեցություն են թողել իր և հասարակության վրա։
         </div>
     </div>
     
