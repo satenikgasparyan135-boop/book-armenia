@@ -13,80 +13,110 @@
             min-height: 100vh; line-height: 1.8;
         }
 
-        .geek-img {
-            width: 100%; max-width: 450px; height: auto;
-            margin-bottom: 30px; margin-top: 20px;
-            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.15));
-        }
-
         .article {
             background-color: #fff; padding: 40px;
             border-radius: 16px; border: 2px solid #dcd8c5;
-            max-width: 650px; margin: auto;
+            max-width: 750px; width: 100%; margin-top: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: left;
         }
 
         h1 {
-            color: #e76f51; font-size: 2.8rem;
+            color: #e76f51; font-size: 2.5rem;
             margin-top: 0; margin-bottom: 20px; font-weight: 800;
-            text-shadow: 1px 1px #fff, 2px 2px #999;
+            text-align: center;
         }
 
-        p { font-size: 1.3rem; margin-bottom: 20px; }
+        /* Որոնման տողի ոճերը */
+        .search-box {
+            width: 100%; padding: 15px; font-size: 1.1rem;
+            border: 2px solid #e07a5f; border-radius: 8px;
+            margin-bottom: 30px; outline: none; box-sizing: border-box;
+            background-color: #fefae0;
+        }
+        .search-box:focus {
+            border-color: #d6512d; background-color: #fff;
+        }
 
         .book-item {
-            background-color: #f9f8f3; padding: 15px 20px;
-            border-left: 5px solid #e07a5f; margin-bottom: 15px;
+            background-color: #f9f8f3; padding: 20px;
+            border-left: 5px solid #e07a5f; margin-bottom: 20px;
             border-radius: 0 8px 8px 0;
+            transition: transform 0.2s;
+        }
+        .book-item:hover {
+            transform: translateX(5px);
+        }
+
+        .book-title {
+            font-size: 1.3rem; font-weight: bold; color: #e76f51;
+            margin-bottom: 8px; display: block;
+        }
+
+        .book-desc {
+            font-size: 1.1rem; color: #444; margin: 0;
         }
 
         .footer-link {
             margin-top: 40px; font-size: 1.1rem; font-weight: 600;
-            color: #666; text-decoration: none; padding: 10px;
+            color: #666; text-decoration: none;
         }
         .footer-link:hover { color: #333; text-decoration: underline; }
     </style>
 </head>
 <body>
-    <!-- Գիքային գրադարակի պատկեր -->
-    <svg class="geek-img" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0" y="0" width="600" height="200" fill="none"/>
-        <rect x="50" y="140" width="500" height="15" fill="#e76f51" rx="5"/>
-        <rect x="100" y="70" width="400" height="15" fill="#e76f51" rx="5"/>
-        <rect x="70" y="80" width="30" height="60" fill="#2a9d8f" rx="3"/>
-        <rect x="110" y="90" width="25" height="50" fill="#f4a261" rx="3"/>
-        <rect x="145" y="70" width="35" height="70" fill="#3d405b" rx="3"/>
-        <circle cx="280" cy="110" r="25" fill="#e9c46a"/>
-        <rect x="270" y="120" width="20" height="15" fill="#333" rx="2"/>
-        <circle cx="270" cy="100" r="5" fill="#fff"/>
-        <circle cx="290" cy="100" r="5" fill="#fff"/>
-        <rect x="320" y="60" width="30" height="80" fill="#81b29a" rx="3"/>
-        <rect x="360" y="75" width="25" height="65" fill="#e07a5f" rx="3"/>
-        <polygon points="460,60 445,90 475,90" fill="#264653"/>
-        <rect x="445" y="90" width="30" height="50" fill="#264653" rx="3"/>
-    </svg>
 
     <div class="article">
-        <h1>📚 Թոփ գրքեր</h1>
-        <p>Ահա մեր կայքի ընտրանին՝ ամենահետաքրքիր և տպավորիչ գրքերը, որոնք հարկավոր է անպայման կարդալ․</p>
+        <h1>📚 Թոփ գրքեր և ընտրանի</h1>
         
-        <div class="book-item">
-            <strong>1. Հարի Փոթեր (Ջեյ Սթիլ / Ջոան Ռոուլինգ)</strong><br>
-            Կախարդանքի և անհավանական արկածների անզուգական աշխարհ։
-        </div>
+        <!-- Որոնման դաշտ -->
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Որոնել գիրք կամ հեղինակ..." onkeyup="searchBooks()">
 
-        <div class="book-item">
-            <strong>2. Փոքրիկ Իշխանը (Անտուան դը Սենթ-Էքյուպերի)</strong><br>
-            Խորը փիլիսոփայական պատմություն սիրո, ընկերության և մարդկային սրտի մասին։
-        </div>
+        <div id="booksContainer">
+            <div class="book-item">
+                <span class="book-title">Խորհրդավոր կղզին (Ժյուլ Վեռն)</span>
+                <p class="book-desc">Հիանալի արկածային վեպ մի խումբ մարդկանց մասին, ովքեր օդապարով հայտնվում են չբնակեցված կղզում։ Նրանք իրենց գիտելիքների, աշխատասիրության և միասնության շնորհիվ կարողանում են զրոյից ստեղծել քաղաքակրթություն։</p>
+            </div>
 
-        <div class="book-item">
-            <strong>3. Դորիան Գրեյի դիմանկարը (Օսկար Ուայլդ)</strong><br>
-            Գեղեցկության, արվեստի և հոգու փորձությունների հավերժական ստեղծագործություն։
+            <div class="book-item">
+                <span class="book-title">Կոմս Մոնտե Քրիստո (Ալեքսանդր Դյումա)</span>
+                <p class="book-desc">Վրեժխնդրության, արդարության և սիրո մասին պատմող համաշխարհային գլուխգործոց։ Երիտասարդ Էդմոն Դանտեսը անարդարացիորեն բանտարկվում է, սակայն փախուստի դիմելով և հսկայական հարստություն գտնելով՝ վերադառնում է որպես կոմս Մոնտե Քրիստո՝ վերականգնելու արդարությունը։</p>
+            </div>
+
+            <div class="book-item">
+                <span class="book-title">Փարիզի Աստվածամոր Տաճարը (Վիկտոր Հյուգո)</span>
+                <p class="book-desc">Խորապես հուզող և դրամատիկ պատմություն միջնադարյան Փարիզի մասին։ Վեպը կենտրոնացած է գեղեցկուհի Եսմերախի, խեղաթյուրված, բայց բարի սիրտ ունեցող զանգակատան պահապան Կվազիմոդոյի և մարդկային կրքերի ու ճակատագրերի բախման վրա։</p>
+            </div>
+
+            <div class="book-item">
+                <span class="book-title">Ոճիր և պատիժ (Ֆեոդոր Դոստոևսկի)</span>
+                <p class="book-desc">Հոգեբանական և փիլիսոփայական խորը վերլուծություն մարդկային խղճի, բարոյականության և հանցանքի մասին։ Գլխավոր հերոսը՝ Ռոդիոն Ռասկոլնիկովը, փորձում է հասկանալ՝ արդյոք «ընտրյալ» մարդիկ իրավունք ունեն հատելու բարոյական սահմանները։</p>
+            </div>
+
+            <div class="book-item">
+                <span class="book-title">Հարի Փոթեր (Ջոան Ռոուլինգ)</span>
+                <p class="book-desc">Կախարդանքի, ընկերության և բարու ու չարի պայքարի անզուգական աշխարհ, որը միլիոնավոր ընթերցողների սովորեցնում է հավատալ հրաշքների։</p>
+            </div>
         </div>
     </div>
     
     <a href="index.html" class="footer-link">← Վերադառնալ գլխավոր էջ</a>
+
+    <!-- Որոնման JavaScript ֆունկցիա -->
+    <script>
+        function searchBooks() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let items = document.getElementsByClassName('book-item');
+
+            for (let i = 0; i < items.length; i++) {
+                let text = items[i].innerText.toLowerCase();
+                if (text.includes(input)) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
 </html>
