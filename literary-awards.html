@@ -22,7 +22,7 @@
         .article {
             background-color: #fff; padding: 40px;
             border-radius: 16px; border: 2px solid #dcd8c5;
-            max-width: 650px; margin: auto;
+            max-width: 750px; width: 100%; margin: auto;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: left;
         }
@@ -31,15 +31,17 @@
             color: #d4a373; font-size: 2.8rem;
             margin-top: 0; margin-bottom: 20px; font-weight: 800;
             text-shadow: 1px 1px #fff, 2px 2px #999;
+            text-align: center;
         }
 
-        p { font-size: 1.3rem; margin-bottom: 20px; }
-
-        .award-item {
+        .award-box {
             background-color: #fefae0; padding: 15px 20px;
-            border-left: 5px solid #dda15e; margin-bottom: 15px;
+            border-left: 5px solid #dda15e;
             border-radius: 0 8px 8px 0;
+            margin-bottom: 15px; font-size: 1.1rem;
+            transition: transform 0.2s;
         }
+        .award-box:hover { transform: translateX(5px); }
 
         .footer-link {
             margin-top: 40px; font-size: 1.1rem; font-weight: 600;
@@ -49,42 +51,28 @@
     </style>
 </head>
 <body>
-    <!-- Գիքային գրադարակի պատկեր -->
     <svg class="geek-img" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
         <rect x="0" y="0" width="600" height="200" fill="none"/>
         <rect x="50" y="140" width="500" height="15" fill="#dda15e" rx="5"/>
         <rect x="100" y="70" width="400" height="15" fill="#dda15e" rx="5"/>
-        <rect x="70" y="80" width="30" height="60" fill="#bc6c25" rx="3"/>
-        <rect x="110" y="90" width="25" height="50" fill="#283618" rx="3"/>
-        <rect x="145" y="70" width="35" height="70" fill="#606c38" rx="3"/>
-        <circle cx="280" cy="110" r="25" fill="#dda15e"/>
-        <rect x="270" y="120" width="20" height="15" fill="#fff" rx="2"/>
-        <circle cx="270" cy="100" r="5" fill="#283618"/>
-        <circle cx="290" cy="100" r="5" fill="#283618"/>
-        <rect x="320" y="60" width="30" height="80" fill="#dda15e" rx="3"/>
-        <rect x="360" y="75" width="25" height="65" fill="#bc6c25" rx="3"/>
-        <polygon points="460,60 445,90 475,90" fill="#283618"/>
-        <rect x="445" y="90" width="30" height="50" fill="#283618" rx="3"/>
+        <rect x="250" y="50" width="100" height="90" fill="#bc6c25" rx="5"/>
+        <polygon points="300,30 280,60 320,60" fill="#f4a261"/>
+        <circle cx="300" cy="95" r="20" fill="#fefae0"/>
     </svg>
 
     <div class="article">
-        <h1>🏆 Գրական մրցանակներ</h1>
-        <p>Աշխարհում կան բազմաթիվ հեղինակավոր մրցանակներ, որոնք տրվում են գրողներին՝ գրականության զարգացման գործում ունեցած մեծագույն ավանդի համար:</p>
+        <h1>🏆 Հայտնի գրական մրցանակներ</h1>
         
-        <div class="award-item">
-            <strong>🥇 Նոբելյան մրցանակ գրականության ոլորտում</strong><br>
-            Աշխարհի ամենահեղինակավոր և բարձր գնահատականն է, որը շնորհվում է գրողներին իրենց ամբողջ ստեղծագործական ուղու համար։
-        </div>
-
-        <div class="award-item">
-            <strong>🎖️ Բուքերյան մրցանակ (Booker Prize)</strong><br>
-            Տրվում է անգլերենով գրված և Մեծ Բրիտանիայում կամ Իռլանդիայում հրատարակված լավագույն վեպի համար։
-        </div>
-
-        <div class="award-item">
-            <strong>📜 Պուլիցերյան մրցանակ (Pulitzer Prize)</strong><br>
-            Ամերիկյան հեղինակավոր մրցանակ լրագրության, գրականության և երաժշտության բնագավառներում։
-        </div>
+        <div class="award-box"><strong>1. Նոբելյան մրցանակ գրականության ոլորտում:</strong> Աշխարհի ամենահեղինակավոր գրական մրցանակն է, որը շնորհվում է 1901 թվականից ի վեր՝ իդեալական ուղղվածություն ունեցող ամենաակնառու ստեղծագործության համար։</div>
+        <div class="award-box"><strong>2. Բուքերյան մրցանակ (Booker Prize):</strong> Շնորհվում է անգլերենով գրված և Մեծ Բրիտանիայում կամ Իռլանդիայում հրատարակված լավագույն վեպի համար։ Այն հաճախ բացահայտում է համաշխարհային բեսթսելերներ։</div>
+        <div class="award-box"><strong>3. Միջազգային Բուքերյան մրցանակ:</strong> Շնորհվում է այն գրքերի համար, որոնք թարգմանվել են անգլերեն և հրատարակվել Մեծ Բրիտանիայում կամ Իռլանդիայում՝ հավասարապես գնահատելով ինչպես հեղինակին, այնպես էլ թարգմանչին։</div>
+        <div class="award-box"><strong>4. Պուլիցերյան մրցանակ (Pulitzer Prize):</strong> ԱՄՆ-ում տրվող ամենահեղինակավոր մրցանակներից է, որն ունի գեղարժեք գրականության (Fiction) առանձին անվանակարգ։ Այն ստացել են այնպիսի հսկաներ, ինչպիսին է Էռնեստ Հեմինգուեյը («Ծերունին և ծովը»)։</div>
+        <div class="award-box"><strong>5. Գոնկուրյան մրցանակ (Prix Goncourt):</strong> Ֆրանսիայի ամենահեղինակավոր և ամենահին գրական մրցանակն է, որը հիմնադրվել է 1903 թվականին։ Հետաքրքիր է, որ հաղթողը ստանում է չնչին դրամական մրցանակ (խորհրդանշական 1 եվրո), բայց գրքի վաճառքներն աճում են հսկայական մասշտաբով։</div>
+        <div class="award-box"><strong>6. Հանս Քրիստիան Անդերսենի անվան մրցանակ:</strong> Հաճախ անվանում են «Փոքր Նոբելյան մրցանակ». այն տրվում է մանկական գրողներին և նկարիչ-իլյուստրատորներին՝ գրականության մեջ ունեցած բացառիկ ներդրման համար։</div>
+        <div class="award-box"><strong>7. Կամոենսի մրցանակ (Prêmio Camões):</strong> Պորտուգալալեզու գրականության ամենակարևոր մրցանակն է, որը շնորհվում է Պորտուգալիայի և Բրազիլիայի կողմից՝ պորտուգալերենով գրող հեղինակների կյանքի ստեղծագործական ուղու համար։</div>
+        <div class="award-box"><strong>8. Ագաթա մրցանակ (Agatha Award):</strong> Տրվում է դասական դետեկտիվ և առեղծվածային ժանրերում ստեղծագործող գրողներին՝ ի պատիվ հայտնի գրող Ագաթա Քրիստիի։</div>
+        <div class="award-box"><strong>9. Հյուգո մրցանակ (Hugo Award):</strong> Ֆանտաստիկայի և ֆենթզի ժանրի ամենահեղինակավոր միջազգային մրցանակն է, որը շնորհվում է ընթերցողների քվեարկությամբ։</div>
+        <div class="award-box"><strong>10. Նեբյուլա մրցանակ (Nebula Award):</strong> ԱՄՆ-ի գիտական ֆանտաստիկայի և ֆենթզի գրողների միության կողմից ամեն տարի շնորհվող մրցանակ, որը հաճախ համեմատվում է Հյուգոյի հետ։</div>
     </div>
     
     <a href="index.html" class="footer-link">← Վերադառնալ գլխավոր էջ</a>
