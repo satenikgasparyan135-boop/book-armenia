@@ -13,21 +13,27 @@
             min-height: 100vh; line-height: 1.8;
         }
 
+        .geek-img {
+            width: 100%; max-width: 450px; height: auto;
+            margin-bottom: 30px; margin-top: 20px;
+            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.15));
+        }
+
         .article {
             background-color: #fff; padding: 40px;
             border-radius: 16px; border: 2px solid #dcd8c5;
-            max-width: 750px; width: 100%; margin-top: 20px;
+            max-width: 750px; width: 100%; margin: auto;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: left;
         }
 
         h1 {
-            color: #e76f51; font-size: 2.5rem;
+            color: #e76f51; font-size: 2.8rem;
             margin-top: 0; margin-bottom: 20px; font-weight: 800;
+            text-shadow: 1px 1px #fff, 2px 2px #999;
             text-align: center;
         }
 
-        /* Որոնման տողի ոճերը */
         .search-box {
             width: 100%; padding: 15px; font-size: 1.1rem;
             border: 2px solid #e07a5f; border-radius: 8px;
@@ -39,82 +45,76 @@
         }
 
         .book-item {
-            background-color: #f9f8f3; padding: 20px;
+            background-color: #fdfae0; padding: 20px;
             border-left: 5px solid #e07a5f; margin-bottom: 20px;
             border-radius: 0 8px 8px 0;
             transition: transform 0.2s;
         }
-        .book-item:hover {
-            transform: translateX(5px);
-        }
+        .book-item:hover { transform: translateX(5px); }
 
         .book-title {
             font-size: 1.3rem; font-weight: bold; color: #e76f51;
             margin-bottom: 8px; display: block;
         }
 
-        .book-desc {
-            font-size: 1.1rem; color: #444; margin: 0;
-        }
+        .book-desc { font-size: 1.1rem; color: #444; margin: 0; }
 
         .footer-link {
             margin-top: 40px; font-size: 1.1rem; font-weight: 600;
-            color: #666; text-decoration: none;
+            color: #666; text-decoration: none; padding: 10px;
         }
         .footer-link:hover { color: #333; text-decoration: underline; }
     </style>
 </head>
 <body>
+    <svg class="geek-img" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="600" height="200" fill="none"/>
+        <rect x="50" y="140" width="500" height="15" fill="#e76f51" rx="5"/>
+        <rect x="100" y="70" width="400" height="15" fill="#e76f51" rx="5"/>
+        <rect x="70" y="80" width="30" height="60" fill="#2a9d8f" rx="3"/>
+        <rect x="110" y="90" width="25" height="50" fill="#e9c46a" rx="3"/>
+        <circle cx="280" cy="110" r="25" fill="#e76f51"/>
+        <rect x="270" y="120" width="20" height="15" fill="#fff" rx="2"/>
+        <rect x="320" y="60" width="30" height="80" fill="#e76f51" rx="3"/>
+    </svg>
 
     <div class="article">
         <h1>📚 Թոփ գրքեր և ընտրանի</h1>
-        
-        <!-- Որոնման դաշտ -->
         <input type="text" id="searchInput" class="search-box" placeholder="🔍 Որոնել գիրք կամ հեղինակ..." onkeyup="searchBooks()">
 
         <div id="booksContainer">
             <div class="book-item">
                 <span class="book-title">Խորհրդավոր կղզին (Ժյուլ Վեռն)</span>
-                <p class="book-desc">Հիանալի արկածային վեպ մի խումբ մարդկանց մասին, ովքեր օդապարով հայտնվում են չբնակեցված կղզում։ Նրանք իրենց գիտելիքների, աշխատասիրության և միասնության շնորհիվ կարողանում են զրոյից ստեղծել քաղաքակրթություն։</p>
+                <p class="book-desc">Հիանալի արկածային վեպ մի խումբ մարդկանց մասին, ովքեր օդապարով հայտնվում են չբնակեցված կղզում։ Նրանք իրենց գիտելիքների և միասնության շնորհիվ ստեղծում են քաղաքակրթություն։</p>
             </div>
-
             <div class="book-item">
                 <span class="book-title">Կոմս Մոնտե Քրիստո (Ալեքսանդր Դյումա)</span>
-                <p class="book-desc">Վրեժխնդրության, արդարության և սիրո մասին պատմող համաշխարհային գլուխգործոց։ Երիտասարդ Էդմոն Դանտեսը անարդարացիորեն բանտարկվում է, սակայն փախուստի դիմելով և հսկայական հարստություն գտնելով՝ վերադառնում է որպես կոմս Մոնտե Քրիստո՝ վերականգնելու արդարությունը։</p>
+                <p class="book-desc">Վրեժխնդրության, արդարության և սիրո մասին պատմող համաշխարհային գլուխգործոց։</p>
             </div>
-
             <div class="book-item">
                 <span class="book-title">Փարիզի Աստվածամոր Տաճարը (Վիկտոր Հյուգո)</span>
-                <p class="book-desc">Խորապես հուզող և դրամատիկ պատմություն միջնադարյան Փարիզի մասին։ Վեպը կենտրոնացած է գեղեցկուհի Եսմերախի, խեղաթյուրված, բայց բարի սիրտ ունեցող զանգակատան պահապան Կվազիմոդոյի և մարդկային կրքերի ու ճակատագրերի բախման վրա։</p>
+                <p class="book-desc">Խորապես հուզող պատմություն միջնադարյան Փարիզի, Եսմերախի և Կվազիմոդոյի մասին։</p>
             </div>
-
             <div class="book-item">
                 <span class="book-title">Ոճիր և պատիժ (Ֆեոդոր Դոստոևսկի)</span>
-                <p class="book-desc">Հոգեբանական և փիլիսոփայական խորը վերլուծություն մարդկային խղճի, բարոյականության և հանցանքի մասին։ Գլխավոր հերոսը՝ Ռոդիոն Ռասկոլնիկովը, փորձում է հասկանալ՝ արդյոք «ընտրյալ» մարդիկ իրավունք ունեն հատելու բարոյական սահմանները։</p>
+                <p class="book-desc">Հոգեբանական և փիլիսոփայական խորը վերլուծություն մարդկային խղճի ու բարոյականության մասին։</p>
             </div>
-
             <div class="book-item">
                 <span class="book-title">Հարի Փոթեր (Ջոան Ռոուլինգ)</span>
-                <p class="book-desc">Կախարդանքի, ընկերության և բարու ու չարի պայքարի անզուգական աշխարհ, որը միլիոնավոր ընթերցողների սովորեցնում է հավատալ հրաշքների։</p>
+                <p class="book-desc">Կախարդանքի, ընկերության և բարու ու չարի պայքարի անզուգական աշխարհ։</p>
             </div>
         </div>
     </div>
     
     <a href="index.html" class="footer-link">← Վերադառնալ գլխավոր էջ</a>
 
-    <!-- Որոնման JavaScript ֆունկցիա -->
     <script>
         function searchBooks() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let items = document.getElementsByClassName('book-item');
-
             for (let i = 0; i < items.length; i++) {
                 let text = items[i].innerText.toLowerCase();
-                if (text.includes(input)) {
-                    items[i].style.display = "";
-                } else {
-                    items[i].style.display = "none";
-                }
+                items[i].style.display = text.includes(input) ? "" : "none";
             }
         }
     </script>
