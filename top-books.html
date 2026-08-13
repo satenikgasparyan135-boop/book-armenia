@@ -1,516 +1,226 @@
 <!DOCTYPE html>
 <html lang="hy">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Լավագույն գրքեր - Book Armenia</title>
+    <style>
+        body {
+            margin: 0; padding: 20px;
+            background: linear-gradient(135deg, #fdfcf6 0%, #e8e4d1 100%);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #333; display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; line-height: 1.8;
+        }
 
-<title>Book Armenia — Թոփ գրքեր</title>
+        .geek-img {
+            width: 100%; max-width: 450px; height: auto;
+            margin-bottom: 30px; margin-top: 20px;
+            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.15));
+        }
 
-<style>
+        .article {
+            background-color: #fff; padding: 40px;
+            border-radius: 16px; border: 2px solid #dcd8c5;
+            max-width: 850px; width: 100%; margin: auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: left;
+        }
 
-* {
-  box-sizing: border-box;
-}
+        h1 {
+            color: #e76f51; font-size: 2.8rem;
+            margin-top: 0; margin-bottom: 20px; font-weight: 800;
+            text-shadow: 1px 1px #fff, 2px 2px #999;
+            text-align: center;
+        }
 
-body {
-  margin: 0;
-  background: #f7f3e8;
-  font-family: Georgia, serif;
-  color: #40372f;
-}
+        .search-box {
+            width: 100%; padding: 15px; font-size: 1.1rem;
+            border: 2px solid #e07a5f; border-radius: 8px;
+            margin-bottom: 30px; outline: none; box-sizing: border-box;
+            background-color: #fefae0;
+        }
+        .search-box:focus {
+            border-color: #d6512d; background-color: #fff;
+        }
 
-.header {
-  text-align: center;
-  padding: 35px 15px 25px;
-}
+        .book-item {
+            background-color: #fdfae0; padding: 15px 20px;
+            border-left: 5px solid #e07a5f; margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: transform 0.2s;
+        }
+        .book-item:hover { transform: translateX(5px); }
 
-.header .emoji {
-  font-size: 42px;
-}
+        .book-info { display: flex; flex-direction: column; }
 
-.header h1 {
-  margin: 8px 0;
-  font-size: 32px;
-}
+        .book-title {
+            font-size: 1.2rem; font-weight: bold; color: #e76f51;
+            margin-bottom: 4px;
+        }
 
-.header p {
-  color: #8a7b6a;
-  font-size: 16px;
-}
+        .book-author {
+            font-size: 1rem; color: #666; font-style: italic;
+        }
 
-.books {
-  max-width: 1100px;
-  margin: auto;
-  padding: 20px;
-}
-
-.books-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.book {
-  background: #fffdf8;
-  border: 1px solid #e6ddcc;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 5px 18px rgba(70,55,40,0.08);
-}
-
-.book-cover {
-  width: 100%;
-  height: 270px;
-  object-fit: cover;
-  display: block;
-  background: #e8dfcf;
-}
-
-.book-content {
-  padding: 16px;
-}
-
-.number {
-  display: inline-block;
-  background: #eee5d6;
-  padding: 5px 9px;
-  border-radius: 20px;
-  font-size: 12px;
-  color: #756451;
-}
-
-.book h2 {
-  font-size: 20px;
-  margin: 10px 0 5px;
-}
-
-.author {
-  color: #9a7652;
-  font-size: 14px;
-}
-
-.genre {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 5px 9px;
-  border-radius: 15px;
-  background: #f0ebe1;
-  font-size: 12px;
-}
-
-.rating {
-  color: #d19a38;
-  margin: 10px 0;
-}
-
-.description {
-  font-family: Arial, sans-serif;
-  color: #625b52;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.button {
-  width: 100%;
-  border: 0;
-  border-radius: 10px;
-  padding: 11px;
-  background: #ad8d69;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.button:hover {
-  background: #927453;
-}
-
-@media (max-width: 700px) {
-
-  .books-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .book-cover {
-    height: 330px;
-  }
-
-}
-
-</style>
+        .footer-link {
+            margin-top: 40px; font-size: 1.1rem; font-weight: 600;
+            color: #666; text-decoration: none; padding: 10px;
+        }
+        .footer-link:hover { color: #333; text-decoration: underline; }
+    </style>
 </head>
-
 <body>
-
-<div class="header">
-
-  <div class="emoji">🔥</div>
-
-  <h1>Թոփ 100 գիրք</h1>
-
-  <p>Գրքեր, որոնք արժե կարդալ</p>
-
-</div>
-
-
-<div class="books">
-
-<div class="books-grid">
-
-
-<!-- 1 -->
-
-<div class="book">
-
-<img
-class="book-cover"
-src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80"
-alt="Դոն Կիխոտ">
-
-<div class="book-content">
-
-<span class="number">#1</span>
-
-<h2>Դոն Կիխոտ</h2>
-
-<div class="author">✍️ Միգել դե Սերվանտես</div>
-
-<span class="genre">Դասական</span>
-
-<div class="rating">★★★★★</div>
-
-<p class="description">
-Հումորով և արկածներով լի պատմություն մի մարդու մասին,
-ով որոշում է դառնալ ասպետ և աշխարհը տեսնում է իր
-երևակայության միջոցով։
-</p>
-
-<button class="button"
-onclick="alert('Դոն Կիխոտ — Միգել դե Սերվանտես')">
-📖 Կարդալ ավելին
-</button>
-
-</div>
-</div>
-
-
-<!-- 2 -->
-
-<div class="book">
-
-<img
-class="book-cover"
-src="https://images.unsplash.com/photo-1511108690759-009324a90311?auto=format&fit=crop&w=600&q=80"
-alt="Հպարտություն և նախապաշարմունք">
-
-<div class="book-content">
-
-<span class="number">#2</span>
-
-<h2>Հպարտություն և նախապաշարմունք</h2>
-
-<div class="author">✍️ Ջեյն Օսթին</div>
-
-<span class="genre">Սիրավեպ</span>
-
-<div class="rating">★★★★★</div>
-
-<p class="description">
-Սիրո, ընտանիքի, հասարակական կարծրատիպերի և առաջին
-տպավորությունների մասին հայտնի դասական վեպ։
-</p>
-
-<button class="button"
-onclick="alert('Հպարտություն և նախապաշարմունք — Ջեյն Օսթին')">
-📖 Կարդալ ավելին
-</button>
-
-</div>
-</div>
-
-
-<!-- 3 -->
-
-<div class="book">
-
-<img
-class="book-cover"
-src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=600&q=80"
-alt="1984">
-
-<div class="book-content">
-
-<span class="number">#3</span>
-
-<h2>1984</h2>
-
-<div class="author">✍️ Ջորջ Օրուել</div>
-
-<span class="genre">Դիստոպիա</span>
-
-<div class="rating">★★★★★</div>
-
-<p class="description">
-Դիստոպիկ աշխարհ, որտեղ պետությունը վերահսկում է
-մարդկանց կյանքը, տեղեկությունը և մտածողությունը։
-</p>
-
-<button class="button"
-onclick="alert('1984 — Ջորջ Օրուել')">
-📖 Կարդալ ավելին
-</button>
-
-</div>
-</div>
-
-
-<!-- 4 -->
-
-<div class="book">
-
-<img
-class="book-cover"
-src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80"
-alt="Փոքրիկ իշխանը">
-
-<div class="book-content">
-
-<span class="number">#4</span>
-
-<h2>Փոքրիկ իշխանը</h2>
-
-<div class="author">✍️ Անտուան դը Սենտ-Էքզյուպերի</div>
-
-<span class="genre">Փիլիսոփայական</span>
-
-<div class="rating">★★★★★</div>
-
-<p class="description">
-Ընկերության, սիրո, պատասխանատվության և մարդկային
-արժեքների մասին գեղեցիկ ու խորքային պատմություն։
-</p>
-
-<button class="button"
-onclick="alert('Փոքրիկ իշխանը — Անտուան դը Սենտ-Էքզյուպերի')">
-📖 Կարդալ ավելին
-</button>
-
-</div>
-</div>
-
-
-<!-- 5 -->
-
-<div class="book">
-
-<img
-class="book-cover"
-src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?auto=format&fit=crop&w=600&q=80"
-alt="Հարյուր տարվա մենություն">
-
-<div class="book-content">
-
-<span class="number">#5</span>
-
-<h2>Հարյուր տարվա մենություն</h2>
-
-<div class="author">✍️ Գաբրիել Գարսիա Մարկես</div>
-
-<span class="genre">Մագիական ռեալիզմ</span>
-
-<div class="rating">★★★★★</div>
-
-<p class="description">
-Բուենդիա ընտանիքի և Մակոնդո քաղաքի մի քանի սերունդների
-պատմությունը՝ մոգական ռեալիզմի միջոցով։
-</p>
-
-<button class="button"
-onclick="alert('Հարյուր տարվա մենություն — Գաբրիել Գարսիա Մարկես')">
-📖 Կարդալ ավելին
-</button>
-
-</div>
-</div>
-
-
-<!-- 6 -->
-
-<div class="book">
-
-<img
-class="book-cover"
-src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=600&q=80"
-alt="Մատանիների տիրակալը">
-
-<div class="book-content">
-
-<span class="number">#6</span>
-
-<h2>Մատանիների տիրակալը</h2>
-
-<div class="author">✍️ Ջ. Ռ. Ռ. Թոլքին</div>
-
-<span class="genre">Ֆենթեզ</span>
-
-<div class="rating">★★★★★</div>
-
-<p class="description">
-Էպիկական ճանապարհորդություն բարեկամության, քաջության
-և չարի դեմ պայքարի մասին։
-</p>
-
-<button class="button"
-onclick="alert('Մատանիների տիրակալը — Ջ. Ռ. Ռ. Թոլքին')">
-📖 Կարդալ ավելին
-</button>
-
-</div>
-</div>
-
-
-<!-- 7 -->
-
-<div class="book">
-
-<img
-class="book-cover"
-src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80"
-alt="Հարի Փոթեր">
-
-<div class="book-content">
-
-<span class="number">#7</span>
-
-<h2>Հարի Փոթերը և Փիլիսոփայական քարը</h2>
-
-<div class="author">✍️ Ջ. Կ. Ռոուլինգ</div>
-
-<span class="genre">Ֆենթեզ</span>
-
-<div class="rating">★★★★★</div>
-
-<p class="description">
-Տղայի պատմություն, որը բացահայտում է կախարդական աշխարհը
-և սկսում իր կրթությունը Հոգվարթսում։
-</p>
-
-<button class="button"
-onclick="alert('Հարի Փոթերը և Փիլիսոփայական քարը — Ջ. Կ. Ռոուլինգ')">
-📖 Կարդալ ավելին
-</button>
-
-</div>
-</div>
-
-
-<!-- 8 -->
-
-<div class="book">
-
-<img
-class="book-cover"
-src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=600&q=80"
-alt="Ալքիմիկոսը">
-
-<div class="book-content">
-
-<span class="number">#8</span>
-
-<h2>Ալքիմիկոսը</h2>
-
-<div class="author">✍️ Պաուլո Կոելյո</div>
-
-<span class="genre">Փիլիսոփայական</span>
-
-<div class="rating">★★★★☆</div>
-
-<p class="description">
-Երիտասարդ հովվի ճանապարհորդությունը՝ երազանքին հետևելու
-և սեփական նպատակին հասնելու որոնման մեջ։
-</p>
-
-<button class="button"
-onclick="alert('Ալքիմիկոսը — Պաուլո Կոելյո')">
-📖 Կարդալ ավելին
-</button>
-
-</div>
-</div>
-
-
-<!-- 9 -->
-
-<div class="book">
-
-<img
-class="book-cover"
-src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80"
-alt="Ոճիր և պատիժ">
-
-<div class="book-content">
-
-<span class="number">#9</span>
-
-<h2>Ոճիր և պատիժ</h2>
-
-<div class="author">✍️ Ֆյոդոր Դոստոևսկի</div>
-
-<span class="genre">Հոգեբանական</span>
-
-<div class="rating">★★★★★</div>
-
-<p class="description">
-Մարդու որոշումների, խղճի և բարոյական պատասխանատվության
-մասին խորքային հոգեբանական վեպ։
-</p>
-
-<button class="button"
-onclick="alert('Ոճիր և պատիժ — Ֆյոդոր Դոստոևսկի')">
-📖 Կարդալ ավելին
-</button>
-
-</div>
-</div>
-
-
-<!-- 10 -->
-
-<div class="book">
-
-<img
-class="book-cover"
-src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=600&q=80"
-alt="Աննա Կարենինա">
-
-<div class="book-content">
-
-<span class="number">#10</span>
-
-<h2>Աննա Կարենինա</h2>
-
-<div class="author">✍️ Լև Տոլստոյ</div>
-
-<span class="genre">Դրամա</span>
-
-<div class="rating">★★★★★</div>
-
-<p class="description">
-Սիրո, ընտանիքի, հասարակության և անձնական ընտրությունների
-մասին հոգեբանական վեպ։
-</p>
-
-<button class="button"
-onclick="alert('Աննա Կարենինա — Լև Տոլստոյ')">
-📖 Կարդալ ավելին
-</button>
-
-</div>
-</div>
-
-
-</div>
-</div>
-
+    <svg class="geek-img" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="600" height="200" fill="none"/>
+        <rect x="50" y="140" width="500" height="15" fill="#e76f51" rx="5"/>
+        <rect x="100" y="70" width="400" height="15" fill="#e76f51" rx="5"/>
+        <rect x="70" y="80" width="30" height="60" fill="#2a9d8f" rx="3"/>
+        <rect x="110" y="90" width="25" height="50" fill="#e9c46a" rx="3"/>
+        <circle cx="280" cy="110" r="25" fill="#e76f51"/>
+        <rect x="270" y="120" width="20" height="15" fill="#fff" rx="2"/>
+        <rect x="320" y="60" width="30" height="80" fill="#e76f51" rx="3"/>
+    </svg>
+
+    <div class="article">
+        <h1>📚 100 Լավագույն գրքեր</h1>
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Որոնել գիրք կամ հեղինակ..." onkeyup="searchBooks()">
+
+        <div id="booksContainer">
+            <!-- 1-10 -->
+            <div class="book-item"><div class="book-info"><span class="book-title">1. Խորհրդավոր կղզին</span><span class="book-author">Ժյուլ Վեռն</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">2. Կոմս Մոնտե Քրիստո</span><span class="book-author">Ալեքսանդր Դյումա</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">3. Փարիզի Աստվածամոր Տաճարը</span><span class="book-author">Վիկտոր Հյուգո</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">4. Ոճիր և պատիժ</span><span class="book-author">Ֆեոդոր Դոստոևսկի</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">5. Հարի Փոթերը և փիլիսոփայական քարը</span><span class="book-author">Ջոան Ռոուլինգ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">6. Փոքրիկ իշխանը</span><span class="book-author">Անտուան դը Սենթ-Էքյուպերի</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">7. Տանջանք և խրախճանք</span><span class="book-author">Նիկողայոս Ադոնց / Վիլյամ Սարոյան</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">8. Մատանիների տիրակալը</span><span class="book-author">Ջ. Ռ. Ռ. Թոլքին</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">9. Հարյուր տարվա մենություն</span><span class="book-author">Գաբրիել Գարսիա Մարկես</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">10. 1984</span><span class="book-author">Ջորջ Օրուել</span></div></div>
+
+            <!-- 11-20 -->
+            <div class="book-item"><div class="book-info"><span class="book-title">11. Սամվել</span><span class="book-author">Րաֆֆի</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">12. Վերք Հայաստանի</span><span class="book-author">Խաչատուր Աբովյան</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">13. Աննա Կարենինա</span><span class="book-author">Լև Տոլստոյ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">14. Պատերազմ և խաղաղություն</span><span class="book-author">Լև Տոլստոյ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">15. Մեծն Գեթսբի</span><span class="book-author">Ֆրենսիս Սքոթ Ֆիցջերալդ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">16. Համլետ</span><span class="book-author">Ուիլյամ Շեքսպիր</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">17. Ռոмеո և Ջուլիետ</span><span class="book-author">Ուիլյամ Շեքսպիր</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">18. Տասնհինգամյա նավապետը</span><span class="book-author">Ժյուլ Վեռն</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">19. Կապիտան Գրանտի որդիները</span><span class="book-author">Ժյուլ Վեռն</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">20. Շուրջերկրյա ճանապարհորդություն 80 օրում</span><span class="book-author">Ժյուլ Վեռն</span></div></div>
+
+            <!-- 21-30 -->
+            <div class="book-item"><div class="book-info"><span class="book-title">21. Երեք հրացանակիրները</span><span class="book-author">Ալեքսանդր Դյումա</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">22. Քսան տարի անց</span><span class="book-author">Ալեքսանդր Դյումա</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">23. Վիկոնտ դը Մրաժելոն</span><span class="book-author">Ալեքսանդր Դյումա</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">24. Սպիտակ ժանիք</span><span class="book-author">Ջեք Լոնդոն</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">25. Մարտին Իդեն</span><span class="book-author">Ջեք Լոնդոն</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">26. Ծովային գայլը</span><span class="book-author">Ջեք Լոնդոն</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">27. Խաչագողի հիշատակարանը</span><span class="book-author">Րաֆֆի</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">28. Կայծեր</span><span class="book-author">Րաֆֆի</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">29. Ոսկեհավաք</span><span class="book-author">Րաֆֆի</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">30. Անկոչ հյուրեր</span><span class="book-author">Րաֆֆի</span></div></div>
+
+            <!-- 31-40 -->
+            <div class="book-item"><div class="book-info"><span class="book-title">31. Ժայռ</span><span class="book-author">Մուրացան</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">32. Գևորգ Մարզպետունի</span><span class="book-author">Մուրացան</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">33. Անուշ</span><span class="book-author">Հովհաննես Թումանյան</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">34. Թմկաբերդի առումը</span><span class="book-author">Հովհաննես Թումանյան</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">35. Վերքերով լի սիրտ</span><span class="book-author">Շիրվանզադե</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">36. Քաոս</span><span class="book-author">Շիրվանզադե</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">37. Նամուս</span><span class="book-author">Շիրվանզադե</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">38. Արտավազդ և Անահիտ</span><span class="book-author">Դերենիկ Դեմիրճյան</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">39. Վարդանանք</span><span class="book-author">Դերենիկ Դեմիրճյան</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">40. Երկիր Նաիրի</span><span class="book-author">Եղիշե Չարենց</span></div></div>
+
+            <!-- 41-50 -->
+            <div class="book-item"><div class="book-info"><span class="book-title">41. Իմ ընտանիքը և այլ կենդանիներ</span><span class="book-author">Ջերալդ Դարել</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">42. Ռոբինզոն Կրուզո</span><span class="book-author">Դանիել Դեֆո</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">43. Գլիվերի ճանապարհորդությունները</span><span class="book-author">Ջոնաթան Սվիֆթ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">44. Հեքիաթներ</span><span class="book-author">Հանս Քրիստիան Անդերսեն</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">45. Թոմ Սոյերի արկածները</span><span class="book-author">Մարկ Տվեն</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">46. Հեքլբերի Ֆիննի արկածները</span><span class="book-author">Մարկ Տվեն</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">47. Հինգշաբթիների ակումբը</span><span class="book-author">Ագաթա Քրիստի</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">48. Եվ ոչ ոք չմնաց</span><span class="book-author">Ագաթա Քրիստի</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">49. Բասկերվիլների շունը</span><span class="book-author">Արթուր Կոնան Դոյլ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">50. Շերլոկ Հոլմսի արկածները</span><span class="book-author">Արթուր Կոնան Դոյլ</span></div></div>
+
+            <!-- 51-60 -->
+            <div class="book-item"><div class="book-info"><span class="book-title">51. Ծերունին և ծովը</span><span class="book-author">Էռնեստ Հեմինգուեյ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">52. Հրաժեշտ զենքին</span><span class="book-author">Էռնեստ Հեմինգուեյ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">53. Արևն էլ է բարձրանում</span><span class="book-author">Էռնեստ Հեմինգուեյ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">54. Տիեզերական ոդիսական</span><span class="book-author">Արթուր Քլարկ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">55. Ստվերների քաղաքը</span><span class="book-author">Կասանդրա Քլեր</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">56. Քաղցկեղի մասնաշենք</span><span class="book-author">Ալեքսանդր Սոլժենիցին</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">57. Վարպետը և Մարգարիտան</span><span class="book-author">Միխայիլ Բուլգակով</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">58. Շների սիրտը</span><span class="book-author">Միխայիլ Բուլգակով</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">59. Ֆաուստ</span><span class="book-author">Յոհան Վոլֆգանգ ֆոն Գյոթե</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">60. Երիտասարդ Վերթերի տառապանքները</span><span class="book-author">Յոհան Վոլֆգանգ ֆոն Գյոթե</span></div></div>
+
+            <!-- 61-70 -->
+            <div class="book-item"><div class="book-info"><span class="book-title">61. Իլիական</span><span class="book-author">Հոմերոս</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">62. Ոդիսական</span><span class="book-author">Հոմերոս</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">63. Աստվածային կատակերգություն</span><span class="book-author">Դանթե Ալիգիերի</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">64. Դորիան Գրեյի նկարը</span><span class="book-author">Օսկար Ուայլդ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">65. Ֆրանկենշտեյն</span><span class="book-author">Մերի Շելի</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">66. Դրակուլա</span><span class="book-author">Բրեմ Ստոկեր</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">67. Ջեյն Էյր</span><span class="book-author">Շառլոտա Բրոնտե</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">68. Մարի Ստյուարտ</span><span class="book-author">Շտեֆան Ցվայգ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">69. Անհանգիստ սիրտ</span><span class="book-author">Շտեֆան Ցվայգ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">70. Ճատրակային նորավեպ</span><span class="book-author">Շտեֆան Ցվայգ</span></div></div>
+
+            <!-- 71-80 -->
+            <div class="book-item"><div class="book-info"><span class="book-title">71. Հարի Փոթերը և գաղտնիքների սենյակը</span><span class="book-author">Ջոան Ռոուլինգ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">72. Հարի Փոթերը և Ազկաբանի բանտարկյալը</span><span class="book-author">Ջոան Ռոուլինգ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">73. Հարի Փոթերը և Հրե գավաթը</span><span class="book-author">Ջոան Ռոուլինգ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">74. Հարի Փոթերը և Փյունիկի միաբանությունը</span><span class="book-author">Ջոան Ռոուլինգ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">75. Հարի Փոթերը և խառնարյուն արքայազնը</span><span class="book-author">Ջոան Ռոուլինգ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">76. Հարի Փոթերը և Մահվան պարգևները</span><span class="book-author">Ջոան Ռոուլինգ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">77. Անծանոթուհին</span><span class="book-author">Անտոն Չեխով</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">78. Ճայ Ջոնաթան Լիվինգսթոն</span><span class="book-author">Ռիչարդ Բախ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">79. Ալքիմիկոսը</span><span class="book-author">Պաուլո Կոելիո</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">80. Վεրոնիկան որոշում է մեռնել</span><span class="book-author">Պաուլո Կոելիո</span></div></div>
+
+            <!-- 81-90 -->
+            <div class="book-item"><div class="book-info"><span class="book-title">81. Ուտოպիա</span><span class="book-author">Թոմաս Մոր</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">82. Կանաչ մղոն</span><span class="book-author">Սթիվեն Քինգ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">83. Փայլատակում</span><span class="book-author">Սթիվեն Քինգ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">84. ԻՏ (Այն)</span><span class="book-author">Սթիվեն Քինգ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">85. Հոբիթ</span><span class="book-author">Ջ. Ռ. Ռ. Թոլքին</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">86. Սիլմարիլիոն</span><span class="book-author">Ջ. Ռ. Ռ. Թոլքին</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">87. Քաղց կլինի</span><span class="book-author">Սյուզան Քոլինզ (Քաղցած խաղեր)</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">88. Մթնշաղ</span><span class="book-author">Սթեֆանի Մայեր</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">89. Բազմապատկում</span><span class="book-author">Ագաթա Քրիստի</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">90. Արևելյան ճեպընթացի սպանությունը</span><span class="book-author">Ագաթա Քրիստի</span></div></div>
+
+            <!-- 91-100 -->
+            <div class="book-item"><div class="book-info"><span class="book-title">91. Մարդն իր փնտրումների մեջ</span><span class="book-author">Վիկտոր Ֆրանկլ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">92. Ծիրանի ծառեր</span><span class="book-author">Հմայակ Բաբայան</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">93. Սասունցի Դավիթ</span><span class="book-author">Հայկական ժողովրդական էպոս</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">94. Առակներ</span><span class="book-author">Վարդան Այգեկցի</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">95. Գիրք մխիթարության</span><span class="book-author">Մխիթար Գոշ</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">96. Ուխտավորը</span><span class="book-author">Վահան Տերյան</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">97. Անդնդախորշ</span><span class="book-author">Ջերոմ Սելինջեր (Փրկիչը տարեկան արտում)</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">98. Քառասուն օր Մուսա լեռան</span><span class="book-author">Ֆրանց Վերֆել</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">99. Հազարքանի հիշատակարան</span><span class="book-author">Գրիգոր Նարեկացի (Մատյան ողբերգության)</span></div></div>
+            <div class="book-item"><div class="book-info"><span class="book-title">100. Անմահության բանաձևը</span><span class="book-author">Դասական ընտրանի</span></div></div>
+        </div>
+    </div>
+    
+    <a href="index.html" class="footer-link">← Վերադառնալ գլխավոր էջ</a>
+
+    <script>
+        function searchBooks() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let items = document.getElementsByClassName('book-item');
+            for (let i = 0; i < items.length; i++) {
+                let text = items[i].innerText.toLowerCase();
+                items[i].style.display = text.includes(input) ? "flex" : "none";
+            }
+        }
+    </script>
 </body>
 </html>
