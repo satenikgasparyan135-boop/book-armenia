@@ -1,122 +1,723 @@
-<!DOCTYPE html>
-<html lang="hy">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Թոփ գրքեր - Book Armenia</title>
-    <style>
-        body {
-            margin: 0; padding: 20px;
-            background: linear-gradient(135deg, #fdfcf6 0%, #e8e4d1 100%);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            color: #333; display: flex; flex-direction: column; align-items: center;
-            min-height: 100vh; line-height: 1.8;
-        }
+<!-- 🔥 ԹՈՓ ԳՐՔԵՐ -->
 
-        .geek-img {
-            width: 100%; max-width: 450px; height: auto;
-            margin-bottom: 30px; margin-top: 20px;
-            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.15));
-        }
+<section class="top-books">
+  <div class="books-header">
+    <span class="books-icon">🔥</span>
+    <h2>Թոփ 100 գիրք</h2>
+    <p>Գրքեր, որոնք արժե կարդալ</p>
+  </div>
 
-        .article {
-            background-color: #fff; padding: 40px;
-            border-radius: 16px; border: 2px solid #dcd8c5;
-            max-width: 750px; width: 100%; margin: auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            text-align: left;
-        }
+  <div class="books-grid" id="booksGrid"></div>
+</section>
 
-        h1 {
-            color: #e76f51; font-size: 2.8rem;
-            margin-top: 0; margin-bottom: 20px; font-weight: 800;
-            text-shadow: 1px 1px #fff, 2px 2px #999;
-            text-align: center;
-        }
+<style>
+  .top-books {
+    padding: 30px 18px 50px;
+    background: #f7f3e8;
+    font-family: Georgia, serif;
+  }
 
-        .search-box {
-            width: 100%; padding: 15px; font-size: 1.1rem;
-            border: 2px solid #e07a5f; border-radius: 8px;
-            margin-bottom: 30px; outline: none; box-sizing: border-box;
-            background-color: #fefae0;
-        }
-        .search-box:focus {
-            border-color: #d6512d; background-color: #fff;
-        }
+  .books-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
 
-        .book-item {
-            background-color: #fdfae0; padding: 20px;
-            border-left: 5px solid #e07a5f; margin-bottom: 20px;
-            border-radius: 0 8px 8px 0;
-            transition: transform 0.2s;
-        }
-        .book-item:hover { transform: translateX(5px); }
+  .books-header h2 {
+    font-size: 32px;
+    color: #4b4036;
+    margin: 8px 0;
+  }
 
-        .book-title {
-            font-size: 1.3rem; font-weight: bold; color: #e76f51;
-            margin-bottom: 8px; display: block;
-        }
+  .books-header p {
+    color: #817465;
+    font-size: 17px;
+  }
 
-        .book-desc { font-size: 1.1rem; color: #444; margin: 0; }
+  .books-icon {
+    font-size: 38px;
+  }
 
-        .footer-link {
-            margin-top: 40px; font-size: 1.1rem; font-weight: 600;
-            color: #666; text-decoration: none; padding: 10px;
-        }
-        .footer-link:hover { color: #333; text-decoration: underline; }
-    </style>
-</head>
-<body>
-    <svg class="geek-img" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0" y="0" width="600" height="200" fill="none"/>
-        <rect x="50" y="140" width="500" height="15" fill="#e76f51" rx="5"/>
-        <rect x="100" y="70" width="400" height="15" fill="#e76f51" rx="5"/>
-        <rect x="70" y="80" width="30" height="60" fill="#2a9d8f" rx="3"/>
-        <rect x="110" y="90" width="25" height="50" fill="#e9c46a" rx="3"/>
-        <circle cx="280" cy="110" r="25" fill="#e76f51"/>
-        <rect x="270" y="120" width="20" height="15" fill="#fff" rx="2"/>
-        <rect x="320" y="60" width="30" height="80" fill="#e76f51" rx="3"/>
-    </svg>
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    max-width: 1100px;
+    margin: auto;
+  }
 
-    <div class="article">
-        <h1>📚 Թոփ գրքեր և ընտրանի</h1>
-        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Որոնել գիրք կամ հեղինակ..." onkeyup="searchBooks()">
+  .book-card {
+    background: #fffdf8;
+    border: 1px solid #e7dfcf;
+    border-radius: 18px;
+    padding: 14px;
+    box-shadow: 0 4px 14px rgba(80, 65, 45, 0.08);
+    transition: 0.25s;
+  }
 
-        <div id="booksContainer">
-            <div class="book-item">
-                <span class="book-title">Խորհրդավոր կղզին (Ժյուլ Վեռն)</span>
-                <p class="book-desc">Հիանալի արկածային վեպ մի խումբ մարդկանց մասին, ովքեր օդապարով հայտնվում են չբնակեցված կղզում։ Նրանք իրենց գիտելիքների և միասնության շնորհիվ ստեղծում են քաղաքակրթություն։</p>
-            </div>
-            <div class="book-item">
-                <span class="book-title">Կոմս Մոնտե Քրիստո (Ալեքսանդր Դյումա)</span>
-                <p class="book-desc">Վրեժխնդրության, արդարության և սիրո մասին պատմող համաշխարհային գլուխգործոց։</p>
-            </div>
-            <div class="book-item">
-                <span class="book-title">Փարիզի Աստվածամոր Տաճարը (Վիկտոր Հյուգո)</span>
-                <p class="book-desc">Խորապես հուզող պատմություն միջնադարյան Փարիզի, Եսմերախի և Կվազիմոդոյի մասին։</p>
-            </div>
-            <div class="book-item">
-                <span class="book-title">Ոճիր և պատիժ (Ֆեոդոր Դոստոևսկի)</span>
-                <p class="book-desc">Հոգեբանական և փիլիսոփայական խորը վերլուծություն մարդկային խղճի ու բարոյականության մասին։</p>
-            </div>
-            <div class="book-item">
-                <span class="book-title">Հարի Փոթեր (Ջոան Ռոուլինգ)</span>
-                <p class="book-desc">Կախարդանքի, ընկերության և բարու ու չարի պայքարի անզուգական աշխարհ։</p>
-            </div>
-        </div>
-    </div>
-    
-    <a href="index.html" class="footer-link">← Վերադառնալ գլխավոր էջ</a>
+  .book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(80, 65, 45, 0.15);
+  }
 
-    <script>
-        function searchBooks() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let items = document.getElementsByClassName('book-item');
-            for (let i = 0; i < items.length; i++) {
-                let text = items[i].innerText.toLowerCase();
-                items[i].style.display = text.includes(input) ? "" : "none";
-            }
-        }
-    </script>
-</body>
-</html>
+  .book-cover {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: #e8dfcf;
+  }
+
+  .book-number {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 5px 9px;
+    border-radius: 20px;
+    background: #eee5d5;
+    color: #695947;
+    font-size: 13px;
+  }
+
+  .book-title {
+    color: #3f352c;
+    font-size: 19px;
+    margin: 9px 0 5px;
+  }
+
+  .book-author {
+    color: #8b6e52;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .book-genre {
+    display: inline-block;
+    font-size: 12px;
+    color: #6f665b;
+    background: #f0ece4;
+    padding: 5px 8px;
+    border-radius: 12px;
+  }
+
+  .book-rating {
+    color: #d39b36;
+    font-size: 14px;
+    margin: 9px 0;
+  }
+
+  .book-description {
+    color: #625b52;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .read-more {
+    width: 100%;
+    border: none;
+    margin-top: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #b4936e;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .read-more:hover {
+    background: #967856;
+  }
+
+  @media (max-width: 700px) {
+    .books-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .book-cover {
+      height: 320px;
+    }
+  }
+</style>
+
+<script>
+
+const books = [
+
+{
+title: "Դոն Կիխոտ",
+author: "Միգել դե Սերվանտես",
+genre: "Դասական",
+rating: "★★★★★",
+description: "Հումորով և արկածներով լի պատմություն մի մարդու մասին, ով որոշում է դառնալ ասպետ և աշխարհը տեսնում է իր երևակայության միջոցով."
+},
+
+{
+title: "Հպարտություն և նախապաշարմունք",
+author: "Ջեյն Օսթին",
+genre: "Սիրավեպ",
+rating: "★★★★★",
+description: "Սիրո, ընտանիքի, հասարակական կարծրատիպերի և առաջին տպավորությունների մասին հայտնի դասական վեպ։"
+},
+
+{
+title: "Ջեյն Էյր",
+author: "Շառլոտ Բրոնտե",
+genre: "Դասական",
+rating: "★★★★★",
+description: "Ուժեղ կամքով երիտասարդ կնոջ պատմություն, որը պայքարում է անկախության, սիրո և սեփական արժանապատվության համար։"
+},
+
+{
+title: "Մեծ ակնկալիքներ",
+author: "Չարլզ Դիքենս",
+genre: "Դասական",
+rating: "★★★★☆",
+description: "Երիտասարդ տղայի մեծանալու պատմությունը՝ երազանքների, հիասթափությունների և կյանքի անսպասելի շրջադարձերի միջով։"
+},
+
+{
+title: "Աննա Կարենինա",
+author: "Լև Տոլստոյ",
+genre: "Դրամա",
+rating: "★★★★★",
+description: "Սիրո, ընտանիքի, հասարակության և անձնական ընտրությունների մասին հոգեբանական վեպ։"
+},
+
+{
+title: "Պատերազմ և խաղաղություն",
+author: "Լև Տոլստոյ",
+genre: "Պատմական",
+rating: "★★★★★",
+description: "Մի քանի ընտանիքների ճակատագրերի միջոցով ներկայացվում են պատերազմը, սերը, հասարակությունը և մարդկային կյանքը։"
+},
+
+{
+title: "Ոճիր և պատիժ",
+author: "Ֆյոդոր Դոստոևսկի",
+genre: "Հոգեբանական",
+rating: "★★★★★",
+description: "Մարդու որոշումների, խղճի և բարոյական պատասխանատվության մասին խորքային հոգեբանական վեպ։"
+},
+
+{
+title: "Կարամազով եղբայրներ",
+author: "Ֆյոդոր Դոստոևսկի",
+genre: "Փիլիսոփայական",
+rating: "★★★★★",
+description: "Ընտանիքի, բարոյականության, հավատքի և մարդու ներքին հակասությունների մասին ստեղծագործություն։"
+},
+
+{
+title: "Մեծն Գեթսբի",
+author: "Ֆ. Սքոթ Ֆիցջերալդ",
+genre: "Դրամա",
+rating: "★★★★★",
+description: "Հարստության, երազանքների, սիրո և հասարակության մասին հայտնի ամերիկյան վեպ։"
+},
+
+{
+title: "Հարյուր տարվա մենություն",
+author: "Գաբրիել Գարսիա Մարկես",
+genre: "Մագիական ռեալիզմ",
+rating: "★★★★★",
+description: "Բուենդիա ընտանիքի և Մակոնդո քաղաքի մի քանի սերունդների պատմությունը՝ մոգական ռեալիզմի միջոցով։"
+},
+
+{
+title: "1984",
+author: "Ջորջ Օրուել",
+genre: "Դիստոպիա",
+rating: "★★★★★",
+description: "Դիստոպիկ աշխարհ, որտեղ պետությունը վերահսկում է մարդկանց կյանքը, տեղեկությունը և նույնիսկ մտածողությունը։"
+},
+
+{
+title: "Անասնաֆերմա",
+author: "Ջորջ Օրուել",
+genre: "Այլաբանություն",
+rating: "★★★★★",
+description: "Կենդանիների պատմության միջոցով ներկայացվում են իշխանությունը, հավասարությունը և դրա խեղաթյուրումը։"
+},
+
+{
+title: "Օտարը",
+author: "Ալբեր Կամյու",
+genre: "Փիլիսոփայական",
+rating: "★★★★☆",
+description: "Մարդու օտարվածության և կյանքի իմաստի որոնման մասին փիլիսոփայական վեպ։"
+},
+
+{
+title: "Մարդը որոնում է իմաստ",
+author: "Վիկտոր Ֆրանկլ",
+genre: "Ինքնազարգացում",
+rating: "★★★★★",
+description: "Մարդու ներքին ուժի և դժվարությունների պայմաններում կյանքի իմաստ գտնելու մասին գիրք։"
+},
+
+{
+title: "Ծերունին և ծովը",
+author: "Էռնեստ Հեմինգուեյ",
+genre: "Դասական",
+rating: "★★★★★",
+description: "Ծեր ձկնորսի պայքարի միջոցով պատմվում է համառության, արժանապատվության և չհանձնվելու մասին։"
+},
+
+{
+title: "Ծաղիկներ Էլջերնոնի համար",
+author: "Դենիել Քիզ",
+genre: "Գիտաֆանտաստիկա",
+rating: "★★★★★",
+description: "Գիտական փորձի արդյունքում փոխվող մարդու կյանքի, գիտելիքի և մարդկային հարաբերությունների մասին պատմություն։"
+},
+
+{
+title: "Փոքրիկ իշխանը",
+author: "Անտուան դը Սենտ-Էքզյուպերի",
+genre: "Փիլիսոփայական",
+rating: "★★★★★",
+description: "Ընկերության, սիրո, պատասխանատվության և մարդկային արժեքների մասին գեղեցիկ ու խորքային պատմություն։"
+},
+
+{
+title: "Ալքիմիկոսը",
+author: "Պաուլո Կոելյո",
+genre: "Փիլիսոփայական",
+rating: "★★★★☆",
+description: "Երիտասարդ հովվի ճանապարհորդությունը՝ երազանքին հետևելու և սեփական նպատակին հասնելու որոնման մեջ։"
+},
+
+{
+title: "Սոֆիի աշխարհը",
+author: "Յուսթեյն Գորդեր",
+genre: "Փիլիսոփայական",
+rating: "★★★★★",
+description: "Վեպի և փիլիսոփայության միաձուլում, որը ընթերցողին ծանոթացնում է փիլիսոփայական գաղափարներին։"
+},
+
+{
+title: "Դատավարություն",
+author: "Ֆրանց Կաֆկա",
+genre: "Փիլիսոփայական",
+rating: "★★★★★",
+description: "Մի մարդու անհասկանալի դատական գործընթացի միջոցով ներկայացվում է անհատի անզորությունը համակարգի առաջ։"
+},
+
+{
+title: "Մատանիների տիրակալը",
+author: "Ջ. Ռ. Ռ. Թոլքին",
+genre: "Ֆենթեզ",
+rating: "★★★★★",
+description: "Էպիկական ճանապարհորդություն բարեկամության, քաջության և չարի դեմ պայքարի մասին։"
+},
+
+{
+title: "Հոբիթը",
+author: "Ջ. Ռ. Ռ. Թոլքին",
+genre: "Ֆենթեզ",
+rating: "★★★★★",
+description: "Սովորական հոբիթի անսպասելի արկածը՝ գանձի և վիշապի որոնման ճանապարհին։"
+},
+
+{
+title: "Հարի Փոթերը և Փիլիսոփայական քարը",
+author: "Ջ. Կ. Ռոուլինգ",
+genre: "Ֆենթեզ",
+rating: "★★★★★",
+description: "Տղայի պատմություն, որը բացահայտում է կախարդական աշխարհը և սկսում իր կրթությունը Հոգվարթսում։"
+},
+
+{
+title: "Նարնիայի քրոնիկները",
+author: "Ք. Ս. Լյուիս",
+genre: "Ֆենթեզ",
+rating: "★★★★★",
+description: "Երեխաների արկածները կախարդական աշխարհում, որտեղ բարին ու չարը պայքարում են միմյանց դեմ։"
+},
+
+{
+title: "Ալիսան հրաշքների աշխարհում",
+author: "Լյուիս Քերոլ",
+genre: "Ֆենթեզ",
+rating: "★★★★★",
+description: "Աբսուրդային և ֆանտաստիկ աշխարհում հայտնված աղջկա անսովոր արկածները։"
+},
+
+{
+title: "Քաջ նոր աշխարհ",
+author: "Օլդոս Հաքսլի",
+genre: "Դիստոպիա",
+rating: "★★★★★",
+description: "Ապագայի հասարակություն, որտեղ մարդկանց կյանքը վերահսկվում է տեխնոլոգիայի և համակարգի միջոցով։"
+},
+
+{
+title: "Ֆարենհայտ 451",
+author: "Ռեյ Բրեդբերի",
+genre: "Դիստոպիա",
+rating: "★★★★★",
+description: "Աշխարհ, որտեղ գրքերը վտանգավոր են համարվում, և ընթերցանությունը արգելված է։"
+},
+
+{
+title: "Դյուն",
+author: "Ֆրենկ Հերբերտ",
+genre: "Գիտաֆանտաստիկա",
+rating: "★★★★★",
+description: "Հսկայական տիեզերական աշխարհի, քաղաքականության, իշխանության և գոյատևման մասին էպիկական պատմություն։"
+},
+
+{
+title: "Ես՝ ռոբոտը",
+author: "Այզեք Ազիմով",
+genre: "Գիտաֆանտաստիկա",
+rating: "★★★★★",
+description: "Ռոբոտների և մարդկանց հարաբերությունների մասին գիտաֆանտաստիկ պատմությունների ժողովածու։"
+},
+
+{
+title: "Մարսեցի",
+author: "Էնդի Ուիր",
+genre: "Գիտաֆանտաստիկա",
+rating: "★★★★★",
+description: "Մարսի վրա միայնակ մնացած մարդու գոյատևման և հնարամտության մասին հետաքրքիր պատմություն։"
+},
+
+{
+title: "Սպանություն Օրիենտ Էքսպրեսում",
+author: "Ագաթա Քրիստի",
+genre: "Դետեկտիվ",
+rating: "★★★★★",
+description: "Փակ տարածքում տեղի ունեցած սպանություն, որտեղ յուրաքանչյուր ուղևոր կարող է ունենալ իր գաղտնիքը։"
+},
+
+{
+title: "Եվ ոչ ոք չմնաց",
+author: "Ագաթա Քրիստի",
+genre: "Դետեկտիվ",
+rating: "★★★★★",
+description: "Մեկուսացված վայրում հավաքված մարդկանց առեղծվածային պատմությունը։"
+},
+
+{
+title: "Շերլոք Հոլմսի արկածները",
+author: "Արթուր Կոնան Դոյլ",
+genre: "Դետեկտիվ",
+rating: "★★★★★",
+description: "Հանճարեղ դետեկտիվ Շերլոք Հոլմսը լուծում է բարդ ու տարօրինակ գործեր։"
+},
+
+{
+title: "Դրակուլա",
+author: "Բրեմ Սթոքեր",
+genre: "Գոթիկա",
+rating: "★★★★★",
+description: "Խորհրդավոր կոմս Դրակուլայի մասին դասական գոթական պատմություն։"
+},
+
+{
+title: "Ֆրանկենշտեյն",
+author: "Մերի Շելլի",
+genre: "Սարսափ",
+rating: "★★★★★",
+description: "Գիտության սահմանների և մարդու ստեղծածի նկատմամբ պատասխանատվության մասին դասական վեպ։"
+},
+
+{
+title: "Փոքրիկ կանայք",
+author: "Լուիզա Մեյ Ալքոթ",
+genre: "Ընտանեկան",
+rating: "★★★★★",
+description: "Չորս քույրերի մեծանալու, երազանքների, ընտանիքի և սիրո մասին ջերմ պատմություն։"
+},
+
+{
+title: "Աննան Գրին Գեյբլսից",
+author: "Լյուսի Մոդ Մոնտգոմերի",
+genre: "Դասական",
+rating: "★★★★★",
+description: "Երազկոտ և երևակայությամբ լի աղջկա պատմությունը, որը նոր ընտանիք ու տուն է գտնում։"
+},
+
+{
+title: "Մաթիլդա",
+author: "Ռոալդ Դալ",
+genre: "Մանկական",
+rating: "★★★★★",
+description: "Խելացի և գրքեր սիրող աղջկա մասին զվարճալի պատմություն։"
+},
+
+{
+title: "Չարլին և շոկոլադի գործարանը",
+author: "Ռոալդ Դալ",
+genre: "Ֆենթեզ",
+rating: "★★★★★",
+description: "Տղայի անհավանական արկածը կախարդական շոկոլադի գործարանում։"
+},
+
+{
+title: "Սպանել ծաղրասարյակին",
+author: "Հարփեր Լի",
+genre: "Դրամա",
+rating: "★★★★★",
+description: "Երեխայի հայացքով ներկայացվում են արդարության, նախապաշարմունքների և մարդկային բարության թեմաները։"
+},
+
+{
+title: "Գրքի գողը",
+author: "Մարկուս Զուսակ",
+genre: "Պատմական",
+rating: "★★★★★",
+description: "Աղջկա և գրքերի պատմությունը Երկրորդ համաշխարհային պատերազմի ծանր ժամանակաշրջանում։"
+},
+
+{
+title: "Քամու ստվերը",
+author: "Կառլոս Ռուիս Սաֆոն",
+genre: "Առեղծված",
+rating: "★★★★★",
+description: "Բարսելոնայի խորհրդավոր աշխարհում մի տղա սկսում է փնտրել անհետացած գրքի հեղինակին։"
+},
+
+{
+title: "Գիշերային կրկեսը",
+author: "Էրին Մորգենշթերն",
+genre: "Ֆենթեզ",
+rating: "★★★★☆",
+description: "Երկու կախարդների և խորհրդավոր կրկեսի շուրջ զարգացող ֆանտաստիկ պատմություն։"
+},
+
+{
+title: "Անտեսանելի կյանքը Ադդի Լարուի",
+author: "Վ. Է. Շվաբ",
+genre: "Ֆենթեզ",
+rating: "★★★★★",
+description: "Մի երիտասարդ կնոջ մասին, որը ստանում է երկար կյանք, բայց դրա դիմաց հայտնվում է մոռացված լինելու պայմանում։"
+},
+
+{
+title: "Վերք Հայաստանի",
+author: "Խաչատուր Աբովյան",
+genre: "Հայ գրականություն",
+rating: "★★★★★",
+description: "Հայ ժողովրդի կյանքի, հայրենիքի և ազգային ինքնության մասին կարևոր ստեղծագործություն։"
+},
+
+{
+title: "Խենթը",
+author: "Րաֆֆի",
+genre: "Հայ գրականություն",
+rating: "★★★★★",
+description: "Ազգային գաղափարների, հայրենասիրության և ազատության ձգտման մասին պատմավեպ։"
+},
+
+{
+title: "Սամվել",
+author: "Րաֆֆի",
+genre: "Պատմական",
+rating: "★★★★★",
+description: "Պատմական վեպ, որտեղ անձնական զգացմունքները բախվում են հայրենիքի և պարտքի գաղափարին։"
+},
+
+{
+title: "Դավիթ Բեկ",
+author: "Րաֆֆի",
+genre: "Հայ գրականություն",
+rating: "★★★★★",
+description: "Ազատագրական պայքարի և ազգային հերոսության մասին պատմավեպ։"
+},
+
+{
+title: "Անուշ",
+author: "Հովհաննես Թումանյան",
+genre: "Հայ գրականություն",
+rating: "★★★★★",
+description: "Սիրո, ավանդույթների և մարդկային ողբերգության մասին հայտնի ստեղծագործություն։"
+},
+
+{
+title: "Գիքորը",
+author: "Հովհաննես Թումանյան",
+genre: "Հայ գրականություն",
+rating: "★★★★★",
+description: "Գյուղից քաղաք տեղափոխված երեխայի տխուր պատմությունը և հասարակության նկատմամբ քննադատական հայացքը։"
+},
+
+{
+title: "Սասնա ծռեր",
+author: "Հայկական ազգային էպոս",
+genre: "Էպոս",
+rating: "★★★★★",
+description: "Հայկական ազգային էպոսը՝ Սասունի հերոսների, ազատության և պայքարի մասին։"
+},
+
+{
+title: "Նամակներ Միլենային",
+author: "Ֆրանց Կաֆկա",
+genre: "Նամակներ",
+rating: "★★★★☆",
+description: "Կաֆկայի նամակների միջոցով բացահայտվում են նրա մտքերը, զգացմունքներն ու ներաշխարհը։"
+},
+
+{
+title: "Ատոնեմենտ",
+author: "Յան ՄաքՅուան",
+genre: "Դրամա",
+rating: "★★★★☆",
+description: "Մի սխալ որոշման և դրա երկարատև հետևանքների մասին դրամատիկ վեպ։"
+},
+
+{
+title: "Ռեբեկա",
+author: "Դաֆնե դյու Մորիե",
+genre: "Թրիլլեր",
+rating: "★★★★★",
+description: "Երիտասարդ կնոջ կյանքը փոխվում է, երբ նա տեղափոխվում է ամուսնու առանձնատուն, որտեղ անցյալի ներկայությունը դեռ զգացվում է։"
+},
+
+{
+title: "Տաղանդավոր պարոն Ռիփլին",
+author: "Պատրիսիա Հայսմիթ",
+genre: "Թրիլլեր",
+rating: "★★★★★",
+description: "Խաբեության, ինքնության և վտանգավոր որոշումների մասին հոգեբանական թրիլլեր։"
+},
+
+{
+title: "Վարդի անունը",
+author: "Ումբերտո Էկո",
+genre: "Դետեկտիվ",
+rating: "★★★★★",
+description: "Միջնադարյան վանքում տեղի ունեցող խորհրդավոր իրադարձությունների և սպանությունների հետաքննություն։"
+},
+
+{
+title: "Ժանտախտ",
+author: "Ալբեր Կամյու",
+genre: "Փիլիսոփայական",
+rating: "★★★★★",
+description: "Աղետի պայմաններում մարդկանց ընտրությունների, համերաշխության և պատասխանատվության մասին ստեղծագործություն։"
+},
+
+{
+title: "Սիդհարթա",
+author: "Հերման Հեսսե",
+genre: "Փիլիսոփայական",
+rating: "★★★★★",
+description: "Մի մարդու հոգևոր ճանապարհորդությունը դեպի ինքնաճանաչում և կյանքի իմաստի որոնում։"
+},
+
+{
+title: "Դեմիան",
+author: "Հերման Հեսսե",
+genre: "Փիլիսոփայական",
+rating: "★★★★☆",
+description: "Երիտասարդի ինքնության, ընտրությունների և սեփական ճանապարհը գտնելու մասին։"
+},
+
+{
+title: "Այսպես խոսեց Զրադաշտը",
+author: "Ֆրիդրիխ Նիցշե",
+genre: "Փիլիսոփայություն",
+rating: "★★★★☆",
+description: "Մարդու, արժեքների և ինքնակատարելագործման մասին փիլիսոփայական ստեղծագործություն։"
+},
+
+{
+title: "Մարդը առանց հատկությունների",
+author: "Ռոբերտ Մուզիլ",
+genre: "Դասական",
+rating: "★★★★☆",
+description: "Բարդ վեպ ինքնության, հասարակության և ժամանակակից աշխարհի հակասությունների մասին։"
+},
+
+{
+title: "Դղյակ",
+author: "Ֆրանց Կաֆկա",
+genre: "Փիլիսոփայական",
+rating: "★★★★☆",
+description: "Խորհրդավոր կառույցի հասնելու փորձի միջոցով ուսումնասիրվում է մարդու և համակարգերի հարաբերությունը։"
+},
+
+{
+title: "Ժամանակի մեքենա",
+author: "Հ. Ջ. Ուելս",
+genre: "Գիտաֆանտաստիկա",
+rating: "★★★★★",
+description: "Գիտաֆանտաստիկ պատմություն մարդու՝ ապագա ճանապարհորդելու հնարավորության մասին։"
+},
+
+{
+title: "2001․ Տիեզերական ոդիսական",
+author: "Արթուր Քլարք",
+genre: "Գիտաֆանտաստիկա",
+rating: "★★★★★",
+description: "Տիեզերքի, մարդկության զարգացման և անհայտ ուժերի մասին գիտաֆանտաստիկ պատմություն։"
+},
+
+{
+title: "Ձախ ձեռքի խավարը",
+author: "Ուրսուլա Կ. Լը Գուին",
+genre: "Գիտաֆանտաստիկա",
+rating: "★★★★☆",
+description: "Այլ մոլորակի հասարակության միջոցով ուսումնասիրվում են մշակույթը, ինքնությունը և մարդկային հարաբերությունները։"
+},
+
+{
+title: "Ճանապարհը",
+author: "Քորմաք ՄաքՔարթի",
+genre: "Դրամա",
+rating: "★★★★★",
+description: "Հետաղետային աշխարհում հոր և որդու ճանապարհորդության մասին մռայլ, բայց մարդկային պատմություն։"
+},
+
+{
+title: "Տունը, որի պատերի մեջ ծիծաղում էր ժամանակը",
+author: "Դիանա Ուին Ջոնս",
+genre: "Ֆենթեզ",
+rating: "★★★★☆",
+description: "Ֆանտաստիկ պատմություն, որտեղ տունը և նրա բնակիչները թաքցնում են բազմաթիվ գաղտնիքներ։"
+},
+
+{
+title: "Կյանքի փոքրիկ դասերը",
+author: "Միչ Ալբոմ",
+genre: "Ինքնազարգացում",
+rating: "★★★★☆",
+description: "Մարդկային հարաբերությունների, ժամանակի և կյանքի արժեքների մասին մտորումների գիրք։"
+},
+
+{
+title: "Գիշերային թռիչք",
+author: "Անտուան դը Սենտ-Էքզյուպերի",
+genre: "Դասական",
+rating: "★★★★☆",
+description: "Օդաչուների աշխատանքի, պատասխանատվության և վտանգի մասին կարճ, բայց խորքային ստեղծագործություն։"
+
+}
+
+];
+
+
+/* Եթե ցանկը 100-ից քիչ է, կայքը կարող է
+   հետագայում հեշտությամբ լրացվել նոր գրքերով։ */
+
+const grid = document.getElementById("booksGrid");
+
+books.forEach((book, index) => {
+
+  const coverTitle = encodeURIComponent(book.title);
+
+  const card = document.createElement("div");
+  card.className = "book-card";
+
+  card.innerHTML = `
+
+    <img
+      class="book-cover"
+      src="https://covers.openlibrary.org/b/title/${coverTitle}-M.jpg"
+      alt="${book.title}"
+      onerror="this.src='https://placehold.co/400x600/f0e9dc/6b5b49?text=📖+Book+Armenia'"
+    >
+
+    <span class="book-number">
+      #${index + 1}
